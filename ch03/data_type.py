@@ -1,10 +1,9 @@
-""" data types and structures """
+""" data types """
 import decimal
 from decimal import Decimal
 import re
 from datetime import datetime
 
-# data types
 A = 10
 print('type of A:', type(A))
 print('bit length of A:', A.bit_length())
