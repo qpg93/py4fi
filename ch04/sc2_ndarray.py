@@ -1,7 +1,8 @@
+""" numpy array """
 from pprint import pprint
-import numpy as np
 import math
 from timeit import timeit
+import numpy as np
 
 # basics
 A = np.array([0, 0.5, 1.0, 1.5, 2.0])
@@ -44,10 +45,10 @@ print('math sqrt 2.5', math.sqrt(2.5))
 # math.sqrt(A)
 # TypeError: only size-1 arrays can be converted to Python scalars
 
-T1 = timeit(stmt='np.sqrt(2.5)', 
+T1 = timeit(stmt='np.sqrt(2.5)',
             setup='import numpy as np',
             number=1000000)
-T2 = timeit(stmt='math.sqrt(2.5)', 
+T2 = timeit(stmt='math.sqrt(2.5)',
             setup='import math',
             number=1000000)
 print('Timeit np sqrt:', T1)

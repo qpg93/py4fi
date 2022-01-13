@@ -1,3 +1,4 @@
+""" basics of python array """
 from pprint import pprint
 from copy import deepcopy
 import array
@@ -42,17 +43,17 @@ print('2 * A:', 2 * A)
 print('A tolist:', A.tolist())
 
 with open('01_array.apy', 'wb') as fileport:
-  A.tofile(fileport)
+    A.tofile(fileport)
 
 B = array.array('f')
 with open('01_array.apy', 'rb') as fileport:
-  # read 5 elements in object
-  B.fromfile(fileport, 5)
+    # read 5 elements in object
+    B.fromfile(fileport, 5)
 print('B:', B)
 
 B = array.array('d')
 with open('01_array.apy', 'rb') as fileport:
-  # read 2 elements in object
-  B.fromfile(fileport, 2)
+    # read 2 elements in object
+    B.fromfile(fileport, 2)
 # the difference in type codes leads to "wrong" numbers
 print('B:', B)

@@ -37,25 +37,29 @@ R = range(0, 8, 1)
 print(R, type(R))
 
 for i in range(1, 10):
-  if i % 2 == 0:
-    print(f'{i:d} is even')
-  elif i % 3 == 0:
-    print(f'{i:d} is multiple of 3')
-  else:
-    print(f'{i:d} is odd')
+    if i % 2 == 0:
+        print(f'{i:d} is even')
+    elif i % 3 == 0:
+        print(f'{i:d} is multiple of 3')
+    else:
+        print(f'{i:d} is odd')
 
 M = [i ** 2 for i in range(5)]
 print(M)
 
-def isEven(x):
-  return x % 2 == 0
-result = list(map(isEven, range(10)))
+
+def is_even(num):
+    """ check if a number is even """
+    return num % 2 == 0
+
+
+result = list(map(is_even, range(10)))
 print(result)
 
 result = list(map(lambda x: x ** 2, range(10)))
 print(result)
 
-result = list(filter(isEven, range(15)))
+result = list(filter(is_even, range(15)))
 print(result)
 
 D = {'Name': 'Angela Merkel',
@@ -70,7 +74,7 @@ print(D.items())
 
 BIRTHDAY = True
 if BIRTHDAY:
-  D['Age'] += 1
+    D['Age'] += 1
 print(D['Age'])
 
 S = set(['u', 'd', 'ud', 'du', 'd', 'du'])
