@@ -1,4 +1,5 @@
 """ structured ndarray & vectorization of code """
+from timeit import timeit
 import numpy as np
 
 # structured ndarray
@@ -66,3 +67,45 @@ def calc(num):
 print('calc(0.5):', calc(0.5))
 # function applied to ndarray object (vectorized & element-wise)
 print('calc(R):', calc(R))
+
+# memory layout
+X = np.random.standard_normal((1000000, 5))
+Y = 2 * X + 3
+# C order (row-major)
+C = np.array((X, Y), order='C')
+# F order (row-major)
+F = np.array((X, Y), order='F')
+# memory is freed up (contingent on garbage collection)
+X, Y = 0., 0.
+print('C[:2] round:', C[:2].round(2))
+
+SETUP = r"""
+import numpy as np
+X = np.random.standard_normal((1000000, 5))
+Y = 2 * X + 3
+C = np.array((X, Y), order='C')
+F = np.array((X, Y), order='F')
+X, Y = 0., 0.
+"""
+
+T = timeit(stmt='C.sum()', setup=SETUP, number=100)
+print('C sum time duration:', T)
+
+T = timeit(stmt='F.sum()', setup=SETUP, number=100)
+print('F sum time duration:', T)
+
+# calculate sums per row ('many')
+T = timeit(stmt='C.sum(axis=0)', setup=SETUP, number=10)
+print('C sum axis=0 time duration:', T)
+
+# calculate sums per column ('few')
+T = timeit(stmt='C.sum(axis=1)', setup=SETUP, number=10)
+print('C sum axis=1 time duration:', T)
+
+T = timeit(stmt='F.sum(axis=0)', setup=SETUP, number=10)
+print('F sum axis=0 time duration:', T)
+
+T = timeit(stmt='F.sum(axis=1)', setup=SETUP, number=10)
+print('F sum axis=1 time duration:', T)
+
+F, C = 0., 0.
