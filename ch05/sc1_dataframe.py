@@ -97,3 +97,18 @@ print('s.mean():', s.mean())
 s.plot(lw=2.0, figsize=(10, 6))
 
 # groupby operations
+df['Quarter'] = ['Q1', 'Q1', 'Q1', 'Q2', 'Q2', 'Q2', 'Q3', 'Q3', 'Q3']
+print('df:', df)
+groups = df.groupby('Quarter')
+print('groups size: ', groups.size())
+print('gouprs mean', groups.mean())
+print('gouprs max', groups.max())
+# gives both the minimum and maximum values per column
+print('gouprs aggregate', groups.aggregate([min, max]).round(2))
+
+df['Odd_Even'] = ['Odd', 'Even', 'Odd', 'Even', 'Odd', 'Even',
+                  'Odd', 'Even', 'Odd']
+groups = df.groupby(['Quarter', 'Odd_Even'])
+print('groups size: ', groups.size())
+
+print('groups aggregate', groups[['No1', 'No4']].aggregate([sum, np.mean]))
