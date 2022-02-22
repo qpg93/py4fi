@@ -1,6 +1,11 @@
 """ static 3d plotting """
 import numpy as np
+import matplotlib as mpl
 import matplotlib.pyplot as plt
+
+plt.style.use('seaborn')
+mpl.rcParams['font.family'] = 'serif'
+
 # from mpl_toolkits.mplot3d import Axes3D
 
 strike = np.linspace(50, 150, 24)
